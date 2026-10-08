@@ -1,0 +1,387 @@
+/* --- Typography & Global Variables --- */
+:root {
+    --primary-color: #1e3a8a; /* Deep Navy */
+    --primary-hover: #1e40af;
+    --secondary-color: #2563eb; /* Electric Blue */
+    --accent-color: #8b5cf6; /* Violet */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --bg-color: #ffffff;
+    --text-main: #fdfeff;
+    --text-muted: #64748b;
+    --navbar-bg: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    --card-bg: #010000;
+    --card-border: rgba(0,0,0,0.06);
+    --hover-bg: #f7f8f9;
+}
+
+[data-bs-theme="dark"] {
+    --bg-color: #0f172a;
+    --text-main: #fefefe;
+    --text-muted: #6e86a7;
+    --card-bg: #1e293b;
+    --card-border: rgba(255,255,255,0.05);
+    --hover-bg: #334155;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+/* --- Custom Navbar --- */
+.custom-navbar {
+    background: var(--navbar-bg);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* --- Cards --- */
+.card {
+    border: none;
+    border-radius: 12px;
+    background-color: var(--card-bg);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+}
+
+.card-header {
+    border-bottom: 1px solid var(--card-border);
+    background-color: transparent !important;
+    border-radius: 12px 12px 0 0 !important;
+    padding: 1.25rem 1.5rem;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* --- Buttons --- */
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.25);
+}
+
+/* --- Sidebar (List Group) --- */
+.list-group {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg);
+}
+
+.list-group-item {
+    border: none;
+    padding: 1rem 1.5rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background-color: transparent;
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.list-group-item:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-main);
+}
+
+.list-group-item.active {
+    background-color: rgba(79, 70, 229, 0.1);
+    color: var(--primary-color);
+    border-left: 4px solid var(--primary-color);
+    font-weight: 600;
+}
+
+/* --- Badges --- */
+.badge {
+    padding: 0.5em 0.75em;
+    font-weight: 500;
+    border-radius: 6px;
+    letter-spacing: 0.3px;
+}
+
+.bg-primary { background-color: var(--primary-color) !important; }
+.bg-success { background-color: #10b981 !important; }
+.bg-warning { background-color: #f59e0b !important; color: white !important;}
+.bg-info { background-color: #0ea5e9 !important; }
+
+/* --- Forms --- */
+.form-control, .form-select {
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+}
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+.form-label {
+    font-weight: 500;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+}
+
+/* --- Tables --- */
+.table {
+    vertical-align: middle;
+    color: var(--text-main);
+}
+.table thead th {
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--card-border);
+    background-color: transparent !important;
+    padding: 1rem;
+}
+.table tbody td {
+    padding: 1rem;
+    color: var(--text-main);
+    background-color: transparent !important;
+    border-bottom: 1px solid var(--card-border);
+}
+
+/* --- Dashboard Stat Cards --- */
+.stat-card-icon {
+    font-size: 2.5rem;
+    opacity: 0.2;
+    position: absolute;
+    right: 1.5rem;
+    bottom: 1rem;
+}
+
+/* --- Animations --- */
+.animate-fade-in-up {
+    animation: fadeInUp 0.5s ease-out forwards;
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hover-lift {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+}
+
+.pulse-badge {
+    animation: pulseBadge 2s infinite;
+}
+
+@keyframes pulseBadge {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* --- Layout Utilities --- */
+.tracking-tight { letter-spacing: -0.025em; }
+.tracking-wide { letter-spacing: 0.025em; }
+
+/* Split Screen Auth */
+.auth-split-bg {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: rgb(255, 255, 255);
+    border-radius: 12px 0 0 12px;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .auth-split-bg {
+        border-radius: 12px 12px 0 0;
+        padding: 2rem;
+    }
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(to bottom, rgba(30, 58, 138, 0.05), transparent);
+    padding: 5rem 0;
+}
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.05em;
+    color: var(--text-main);
+    background: -webkit-linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    max-width: 600px;
+}
+
+/* ==========================================================================
+   GLOBAL ANIMATED BACKGROUND SYSTEM
+   ========================================================================== */
+.animated-bg {
+    position: relative;
+    z-index: 0;
+}
+
+.bg-shapes-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none; /* Ensure it never blocks clicks */
+    background-color: var(--bg-color);
+    transition: background-color 0.3s ease;
+}
+
+/* The core subtle glowing orb/particle */
+.shape {
+    position: absolute;
+    filter: blur(80px); /* Creates the soft glow effect */
+    opacity: 0.35;
+    border-radius: 50%;
+    animation: floatShape 20s infinite ease-in-out alternate;
+    will-change: transform;
+}
+
+/* 1. Default / Auth Theme (Futuristic Career Network) */
+.animated-bg--auth .shape:nth-child(1) { width: 500px; height: 500px; background: var(--primary-color); top: -10%; left: -10%; }
+.animated-bg--auth .shape:nth-child(2) { width: 400px; height: 400px; background: var(--secondary-color); bottom: 5%; right: -5%; animation-delay: -5s; }
+.animated-bg--auth .shape:nth-child(3) { width: 300px; height: 300px; background: var(--accent-color); top: 30%; left: 40%; animation-delay: -10s; }
+
+/* 2. Student Theme (Growth, Opportunity, Success) */
+.animated-bg--student .shape:nth-child(1) { width: 450px; height: 450px; background: var(--success); top: 5%; right: 10%; }
+.animated-bg--student .shape:nth-child(2) { width: 500px; height: 500px; background: var(--secondary-color); bottom: -15%; left: 5%; animation-delay: -8s; }
+.animated-bg--student .shape:nth-child(3) { width: 250px; height: 250px; background: var(--primary-color); top: 50%; left: 60%; animation-delay: -15s; }
+
+/* 3. Recruiter Theme (Company, Hiring, Network) */
+.animated-bg--recruiter .shape:nth-child(1) { width: 550px; height: 550px; background: var(--primary-color); top: -10%; left: 15%; }
+.animated-bg--recruiter .shape:nth-child(2) { width: 350px; height: 350px; background: var(--warning); bottom: 10%; right: 5%; animation-delay: -4s; }
+.animated-bg--recruiter .shape:nth-child(3) { width: 200px; height: 200px; background: var(--secondary-color); top: 40%; right: 40%; animation-delay: -12s; }
+
+/* 4. Admin Theme (Data, Analytics, Insights) */
+.animated-bg--admin .shape:nth-child(1) { width: 400px; height: 400px; background: var(--danger); top: 20%; left: -5%; }
+.animated-bg--admin .shape:nth-child(2) { width: 600px; height: 600px; background: var(--primary-color); bottom: -20%; right: 15%; animation-delay: -12s; }
+.animated-bg--admin .shape:nth-child(3) { width: 300px; height: 300px; background: var(--accent-color); top: 10%; right: 30%; animation-delay: -7s; }
+
+/* Keyframe for subtle organic floating movement */
+@keyframes floatShape {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(40px, -60px) scale(1.1); }
+    66% { transform: translate(-30px, 30px) scale(0.9); }
+    100% { transform: translate(50px, -30px) scale(1.05); }
+}
+
+/* Dark Mode Overrides (Must be extremely subtle to not ruin contrast) */
+[data-bs-theme="dark"] .shape {
+    opacity: 0.12; 
+    filter: blur(100px);
+}
+
+/* Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .shape {
+        animation: none !important;
+        transform: none !important;
+    }
+}
+
+
+
+/* ==========================================================================
+   PREMIUM DARK TABLES (Applications & Applicants)
+   ========================================================================== */
+.table-premium-dark {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.table-premium-dark thead th {
+    background-color: #263653 !important;
+    color: #AFC0D8 !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    padding: 1rem 1.25rem;
+    border-bottom: none !important;
+    border-top: none !important;
+}
+
+.table-premium-dark tbody td {
+    background-color: #17243A !important;
+    color: #E8EEF7 !important;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+    border-top: none !important;
+    vertical-align: middle;
+}
+
+/* Secondary info styling */
+.table-premium-dark tbody td .text-muted,
+.table-premium-dark tbody td small {
+    color: #AFC0D8 !important;
+}
+
+/* Smooth row hover */
+.table-premium-dark tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table-premium-dark tbody tr:hover td {
+    background-color: #213352 !important;
+}
+
+.table-premium-dark tbody tr:last-child td {
+    border-bottom: none !important;
+}
