@@ -1,0 +1,11 @@
+0:0:0:0:0:0:0:1 - - [07/Oct/2026:23:34:28 +0530] "GET /campus-placement-portal/ HTTP/1.1" 200 5220 http-bio-8080-exec-1 1676
+0:0:0:0:0:0:0:1 - - [07/Oct/2026:23:34:28 +0530] "GET /campus-placement-portal/ HTTP/1.1" 200 5220 http-bio-8080-exec-2 270
+0:0:0:0:0:0:0:1 - - [07/Oct/2026:23:34:29 +0530] "GET /campus-placement-portal/css/style.css HTTP/1.1" 304 - http-bio-8080-exec-4 13
+0:0:0:0:0:0:0:1 - - [07/Oct/2026:23:34:30 +0530] "GET /campus-placement-portal/register HTTP/1.1" 200 10091 http-bio-8080-exec-6 181
+0:0:0:0:0:0:0:1 - - [07/Oct/2026:23:35:27 +0530] "POST /campus-placement-portal/register HTTP/1.1" 200 10290 http-bio-8080-exec-7 2504
+0:0:0:0:0:0:0:1 - - [07/Oct/2026:23:36:07 +0530] "POST /campus-placement-portal/register HTTP/1.1" 200 7697 http-bio-8080-exec-8 2167
+0:0:0:0:0:0:0:1 - - [07/Oct/2026:23:36:21 +0530] "POST /campus-placement-portal/login HTTP/1.1" 302 - http-bio-8080-exec-10 842
+0:0:0:0:0:0:0:1 - - [07/Oct/2026:23:36:24 +0530] "GET /campus-placement-portal/student/dashboard HTTP/1.1" 200 6175 http-bio-8080-exec-2 3706
+0:0:0:0:0:0:0:1 - - [07/Oct/2026:23:36:30 +0530] "GET /campus-placement-portal/student/profile HTTP/1.1" 200 13205 http-bio-8080-exec-2 3481
+0:0:0:0:0:0:0:1 - - [07/Oct/2026:23:36:38 +0530] "GET /campus-placement-portal/student/opportunities HTTP/1.1" 200 7874 http-bio-8080-exec-2 3911
+0:0:0:0:0:0:0:1 - - [07/Oct/2026:23:36:44 +0530] "GET /campus-placement-portal/student/applications HTTP/1.1" 200 4681 http-bio-8080-exec-2 3806
