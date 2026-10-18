@@ -71,6 +71,22 @@
                 <configuration>
                     <path>/campus-placement-portal</path>
                     <port>8080</port>
+                    <!--
+                        gson-2.10.1 and mysql-connector-java-8.0.33 are Multi-Release JARs
+                        containing META-INF/versions/9/module-info.class (Java 9 class format).
+                        Tomcat 7's BCEL annotation scanner cannot parse those entries and emits
+                        a misleading SEVERE ClassFormatException. Neither JAR contains servlet
+                        annotations that Tomcat needs to discover, so skipping them is safe.
+
+                        NOTE: Tomcat 7 uses "tomcat.util.scan.DefaultJarScanner.jarsToSkip"
+                        (confirmed from bytecode of tomcat-embed-core-7.0.47.jar).
+                        "StandardJarScanFilter.jarsToSkip" was only introduced in Tomcat 8.5+.
+                    -->
+                    <systemProperties>
+                        <tomcat.util.scan.DefaultJarScanner.jarsToSkip>
+                            gson-*.jar,mysql-connector-*.jar,mysql-connector-java-*.jar
+                        </tomcat.util.scan.DefaultJarScanner.jarsToSkip>
+                    </systemProperties>
                 </configuration>
             </plugin>
         </plugins>
