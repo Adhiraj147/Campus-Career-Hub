@@ -1,0 +1,30 @@
+# Build artifacts
+target/
+
+# Git history (not needed in image)
+.git/
+.gitignore
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# Documentation & reports (not needed in image)
+*.md
+project-report/
+README.md
+
+# Python scripts (only used for local report generation)
+*.py
+__pycache__/
+
+# Logs
+*.log
+logs/
+
+# Local env file (secrets — never goes into image)
+.env
+
+# This file itself
+.dockerignore
