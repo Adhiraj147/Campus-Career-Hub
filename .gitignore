@@ -1,0 +1,34 @@
+# ── Maven build output ───────────────────────────────────────────────────────
+target/
+*.war
+*.jar
+
+# ── IDE files ────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# ── OS files ─────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── SECURITY: Never commit real credentials ───────────────────────────────────
+# .env holds your actual DB_URL, DB_USERNAME, DB_PASSWORD — keep it local only
+.env
+
+# Properties files that could contain passwords
+*.properties
+src/main/resources/application.properties
+src/main/resources/db.properties
+
+# ── Logs ─────────────────────────────────────────────────────────────────────
+*.log
+logs/
+
+# ── Python (report generation scripts) ───────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
