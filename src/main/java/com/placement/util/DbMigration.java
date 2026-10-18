@@ -6,29 +6,31 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 /**
- * One-time migration: creates (or fixes) the notifications table.
- * Run with: mvn exec:java -Dexec.mainClass=com.placement.util.DbMigration
+ * One-time / idempotent DB migration utility.
+ *
+ * Creates the notifications table if it does not already exist.
+ * Reads credentials from the same environment variables used by the application:
+ *   DB_URL, DB_USERNAME, DB_PASSWORD
+ *
+ * Run manually:
+ *   mvn exec:java -Dexec.mainClass=com.placement.util.DbMigration -Dexec.classpathScope=compile
+ *
+ * In Docker this is called automatically by start.sh before Tomcat boots.
  */
 public class DbMigration {
 
     public static void main(String[] args) throws Exception {
-        String url = "jdbc:mysql://mysql-2bcfb9f-angadsinghshekhawat8-2f66.b.aivencloud.com:18967/defaultdb"
-                   + "?sslMode=REQUIRED&serverTimezone=UTC"
-                   + "&connectTimeout=15000&socketTimeout=60000";
-        String user     = "avnadmin";
-        String password = "AVNS_-YGmq2j6D8TOXxABPkz";
+        String url      = requireEnv("DB_URL");
+        String user     = requireEnv("DB_USERNAME");
+        String password = requireEnv("DB_PASSWORD");
 
         Class.forName("com.mysql.cj.jdbc.Driver");
         try (Connection conn = DriverManager.getConnection(url, user, password);
              Statement  stmt = conn.createStatement()) {
 
-            // Drop and recreate to ensure correct schema
-            System.out.println("[DbMigration] Dropping old notifications table if exists...");
-            stmt.execute("DROP TABLE IF EXISTS notifications");
-
-            System.out.println("[DbMigration] Creating notifications table...");
+            System.out.println("[DbMigration] Ensuring notifications table exists...");
             stmt.execute(
-                "CREATE TABLE notifications (" +
+                "CREATE TABLE IF NOT EXISTS notifications (" +
                 "  notification_id   INT AUTO_INCREMENT PRIMARY KEY," +
                 "  user_id           INT NOT NULL," +
                 "  message           TEXT NOT NULL," +
@@ -45,13 +47,19 @@ public class DbMigration {
                 ")"
             );
 
-            // Verify
-            ResultSet rs = stmt.executeQuery("SHOW COLUMNS FROM notifications");
-            System.out.println("[DbMigration] SUCCESS — notifications table columns:");
-            while (rs.next()) {
-                System.out.println("  " + rs.getString("Field") + " " + rs.getString("Type"));
-            }
+            ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM notifications");
+            rs.next();
+            System.out.println("[DbMigration] Done. notifications table row count: " + rs.getInt(1));
         }
-        System.out.println("[DbMigration] Done.");
+    }
+
+    private static String requireEnv(String name) {
+        String v = System.getenv(name);
+        if (v == null || v.trim().isEmpty()) {
+            throw new RuntimeException(
+                "[DbMigration] Required environment variable \"" + name + "\" is not set."
+            );
+        }
+        return v;
     }
 }
