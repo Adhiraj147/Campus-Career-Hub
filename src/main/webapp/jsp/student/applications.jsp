@@ -14,7 +14,19 @@
     
     <div class="col-md-9">
         <h3 class="mb-3">My Applications</h3>
-        
+
+        <%-- Profile missing banner --%>
+        <c:if test="${profileMissing}">
+            <div class="alert alert-warning d-flex align-items-center mb-4" role="alert">
+                <i class="bi bi-person-exclamation me-2 fs-5"></i>
+                <div>
+                    <strong>Student profile not found.</strong>
+                    Please <a href="${pageContext.request.contextPath}/student/profile" class="alert-link fw-semibold">complete your profile</a>
+                    before you can view or track applications.
+                </div>
+            </div>
+        </c:if>
+
         <c:if test="${param.success == 'applied'}">
             <div class="alert alert-success">Application submitted successfully!</div>
         </c:if>

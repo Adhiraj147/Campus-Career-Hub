@@ -16,7 +16,19 @@
     <!-- Content -->
     <div class="col-md-9">
         <h3 class="mb-3">Available Opportunities</h3>
-        
+
+        <%-- Profile missing banner --%>
+        <c:if test="${profileMissing}">
+            <div class="alert alert-warning d-flex align-items-center mb-4" role="alert">
+                <i class="bi bi-person-exclamation me-2 fs-5"></i>
+                <div>
+                    <strong>Your student profile is incomplete.</strong>
+                    Please <a href="${pageContext.request.contextPath}/student/profile" class="alert-link fw-semibold">complete your profile</a>
+                    to check eligibility and apply for opportunities.
+                </div>
+            </div>
+        </c:if>
+
         <!-- Search and Filter Bar -->
         <div class="card shadow-sm mb-4">
             <div class="card-body">

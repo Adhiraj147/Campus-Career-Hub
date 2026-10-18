@@ -16,13 +16,36 @@
     <!-- Profile Content -->
     <div class="col-md-9">
         <h3 class="mb-3">My Profile</h3>
-        
+
+        <%-- Error message from servlet --%>
+        <c:if test="${not empty errorMessage}">
+            <div class="alert alert-danger d-flex align-items-center mb-4" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                ${errorMessage}
+            </div>
+        </c:if>
+
+        <%-- Student profile row missing from DB --%>
+        <c:if test="${profileMissing}">
+            <div class="alert alert-warning d-flex align-items-center mb-4" role="alert">
+                <i class="bi bi-person-exclamation me-2 fs-5"></i>
+                <div>
+                    <strong>Profile not found.</strong> Your student profile record could not be located.
+                    Please <a href="${pageContext.request.contextPath}/logout" class="alert-link">log out</a>
+                    and register again, or contact the administrator.
+                </div>
+            </div>
+        </c:if>
+
+        <%-- Only render profile sections when student data is available --%>
+        <c:if test="${not profileMissing and empty errorMessage}">
+
         <!-- Progress Bar -->
         <div class="card shadow-sm mb-4">
             <div class="card-body">
                 <h5>Profile Completion</h5>
                 <div class="progress" style="height: 25px;">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated ${completionScore == 100 ? 'bg-success' : 'bg-primary'}" role="progressbar" 
+                    <div class="progress-bar progress-bar-striped progress-bar-animated ${completionScore == 100 ? 'bg-success' : 'bg-primary'}" role="progressbar"
                          style="width: ${completionScore}%;" aria-valuenow="${completionScore}" aria-valuemin="0" aria-valuemax="100">
                         ${completionScore}%
                     </div>
@@ -92,12 +115,12 @@
             <div class="card-body">
                 <div class="mb-3">
                     <c:forEach var="skill" items="${student.skills}">
-                        <span class="badge bg-primary bg-opacity-10 text-primary border border-primary-subtle me-2 mb-2 p-2 rounded-pill">
-                            ${skill} 
+                        <span class="skill-badge me-2 mb-2">
+                            ${skill}
                             <form action="${pageContext.request.contextPath}/student/profile" method="post" class="d-inline">
                                 <input type="hidden" name="action" value="removeSkill">
                                 <input type="hidden" name="skillName" value="${skill}">
-                                <button type="submit" class="btn-close ms-2" style="font-size: 0.5rem;" aria-label="Remove"></button>
+                                <button type="submit" class="btn-close ms-1" aria-label="Remove"></button>
                             </form>
                         </span>
                     </c:forEach>
@@ -254,5 +277,7 @@
     </div>
   </div>
 </div>
+
+</c:if><%-- end c:if not profileMissing --%>
 
 <jsp:include page="../common/footer.jsp" />

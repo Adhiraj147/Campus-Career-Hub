@@ -8,6 +8,13 @@
             <a href="${pageContext.request.contextPath}/recruiter/profile" class="list-group-item list-group-item-action">Company Profile</a>
             <a href="${pageContext.request.contextPath}/recruiter/opportunities" class="list-group-item list-group-item-action">Manage Postings</a>
             <a href="${pageContext.request.contextPath}/recruiter/opportunities" class="list-group-item list-group-item-action">View Applicants</a>
+            <a href="${pageContext.request.contextPath}/recruiter/notifications" class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
+                Notifications
+                <% Integer unreadAttr = (Integer) request.getAttribute("unreadNotifications");
+                   if (unreadAttr != null && unreadAttr > 0) { %>
+                <span class="badge bg-danger"><%= unreadAttr %></span>
+                <% } %>
+            </a>
         </div>
     </div>
     <div class="col-md-9">
